@@ -3,25 +3,53 @@
 <head>
     <meta charset="UTF-8">
 	<style>
+		@keyframes slidein {
+			from {
+				opacity:0;
+				transform: translateX(-20%);
+			}
+
+			to {
+				opacity:1;
+				transform: translateX(0%);
+			}
+		}
 		body {
 			font-family: sans-serif;
-			color: lightgray;
+			color: yellow;
 		}
 
 		.monospace {
 			font-family: monospace;
 		}
+		.vasi-bundle-wrapper {
+			width: 33%;;
+			animation: slidein 0.2s ease-in-out;
+			background-color:rgba(0, 150, 136, 0.4);
+			padding:20px;
+		}
 	</style>
 </head>
 <body>
-	<H2>BUNDLE GRAPHICS</H2>
-	<div id="message"></div>
+	<div id="bundleWrapper" class="vasi-bundle-wrapper">
+		<H2 id="title">BUNDLE GRAPHICS</H2>
+		<div id="message"></div>
+	</div>
+	</div>
 	<script>
+		const displayRep = nodecg.Replicant('display')
 		const textInputReplicant = nodecg.Replicant('textInput', 'vasi-bundle');
-		// const message = document.getElementById("message")
-		textInputReplicant.on('change', (newValue, oldValue) => {
-			message.innerText = `text input value: ${newValue}!`;
+		const bundleWrapper = document.getElementById("bundleWrapper")
+		const textareaRep = nodecg.Replicant('textareaRep')
+		textareaRep.on('change', (newValue, oldValue) => {
+			message.innerText = newValue;
 		});
+		textInputReplicant.on('change', (newValue, oldValue) => {
+			title.innerText = newValue;
+		});
+		displayRep.on('change', (nv, ov) => {
+			bundleWrapper.style.display = nv === false ? 'none' : 'block'
+		})
 		// You can access the NodeCG api anytime from the `window.nodecg` object
 		// Or just `nodecg` for short. Like this!:
 	</script>
