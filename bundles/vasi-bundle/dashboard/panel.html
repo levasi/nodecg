@@ -124,20 +124,8 @@
 		const displayRep = nodecg.Replicant('display')
 
 		textInputReplicant.on('change', (newValue, oldValue) => {
-			// The value of the Replicant has changed somewhere in NodeCG,
-			// this could be another dashboard panel, a server initiated change,
-			// or the doing of another user accessing your dashboard panel.
 			textInput.value = newValue;
 		});
-		// textareaRep.on('change', (newValue, oldValue) => {
-		// 	// The value of the Replicant has changed somewhere in NodeCG,
-		// 	// this could be another dashboard panel, a server initiated change,
-		// 	// or the doing of another user accessing your dashboard panel.
-		// 	textareaInput.value = newValue;
-		// });
-		// textareaRep.on('change', () => {
-
-		// })
 		submitButton.onclick = () => {
 			// A Replicant can be modified by modifying its `value`.
 			textInputReplicant.value = textInput.value;
@@ -149,11 +137,6 @@
 			textareaRep.value = textareaInput.value
 		}
 		textareaInput.addEventListener('input', onTextareaInput)
-	
-
-		// You can access the NodeCG api anytime from the `window.nodecg` object
-		// Or just `nodecg` for short. Like this!:
-		// nodecg.log.info('Here\'s an example of using NodeCG\'s logging API!');
 	</script>
 </body>
 </html>
